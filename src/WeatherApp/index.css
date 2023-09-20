@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Inter:wght@500&family=Noto+Naskh+Arabic:wght@500;600&family=Noto+Sans:ital,wght@0,600;0,800;1,700&family=Nunito+Sans:wght@500&family=Roboto:ital,wght@0,100;0,700;1,500;1,700&family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Inter:wght@500&family=Noto+Naskh+Arabic:wght@500;600&family=Noto+Sans:ital,wght@0,600;0,800;1,700&family=Nunito+Sans:wght@500&family=Roboto:ital,wght@0,100;0,700;1,500;1,700&family=Rubik:wght@300;400&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #f1f5f8;
+}
+:lang(ps) h6, a, button, p, li, input, label, h1, h2, h3, h4, h5, h6{
+    font-family: 'Alegreya', serif;
+    font-family: 'Inter', sans-serif;
+    font-family: 'Noto Naskh Arabic', serif;
+    font-weight: 300;
+}
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 83vh;
+}
+.dark.loading {
+    background-color: #0d0d13;
+    color: #f1f5f8;
+    font-size: 3rem;
+}

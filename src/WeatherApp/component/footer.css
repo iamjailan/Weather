@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+}
+.dark p {
+    color: #c5e3fa;
+}
+p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width: 768px){
+    p {
+        font-size: .6rem;
+    }
+}
