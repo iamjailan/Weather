@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { createContext } from "react";
 import cookies from "js-cookie"
 import axios from "axios";
-import i18next from "i18next";
 
 const AppContext = createContext()
 
@@ -20,6 +19,7 @@ const AppProvider = ({children}) =>  {
     const [showError, setShowError] = React.useState(null) 
     const [loading, setLoading] = React.useState(false)
     const [emptyInput, setEmptyInput] = React.useState(false)
+    const [nextDayData, setNextDayData] = React.useState([])
 
     useEffect(() => {
         const savedState = localStorage.getItem("theme")
@@ -44,6 +44,35 @@ const AppProvider = ({children}) =>  {
         setHomeMailError(false)
     }, 1000)
 
+    const ApiKey = 'ce9d3f3835631871dba83111b38ff243'
+    const apiLanguage = cookies.get("i18next") || 'en'
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&lang=${apiLanguage}&exclude=hourly,daily&appid=${ApiKey}`       
+    const urlNextDay = `https://api.openweathermap.org/data/2.5/forecast?q=${cityValue}&exclude=daily&appid=${ApiKey}` 
+    
+    const fetchNextDay = async () => {
+        setLoading(true)
+        try {
+            await axios.get(urlNextDay)
+            .then(response => {
+                const filterData = response.data.list.filter((data, index) => index % 8 === 0)
+                setNextDayData(filterData)
+            })
+            .catch(err => {
+                setShowError(err)
+            })
+            
+        } catch (error) {
+            setShowError(error)
+        }
+        setLoading(false)
+    }
+
+    const getDayName = (dateString) => {
+        const date = new Date(dateString);
+        const daysOfWeek = languages.code === "en" ?  ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] : ['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'] 
+        return daysOfWeek[date.getDay()]
+    }
+
     const fetchData = async () => {
         setLoading(true)
         try {
@@ -60,11 +89,29 @@ const AppProvider = ({children}) =>  {
         }
         setLoading(false)
     }
-    
-    
 
-    const ApiKey = 'ce9d3f3835631871dba83111b38ff243'
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${ApiKey}`       
+    const languages = [
+        {
+          name: 'English',
+          code: 'en',
+          dir: 'ltr',
+          font: '',
+        },
+        {
+          name: 'پښتو',
+          code: 'ps',
+          dir: 'rtl',
+          font: "Noto Naskh Arabic', serif",
+          width: "300"
+        },
+        {
+          name: 'دری',
+          code: 'fa',
+          dir: 'rtl',
+          font: "Noto Naskh Arabic', serif",
+          width: "300"
+        }
+      ]   
 
     const toggleMenu = () => {
         setMenu(prevState => !prevState)
@@ -98,32 +145,11 @@ const AppProvider = ({children}) =>  {
             return () => clearTimeout(timeout)
         } else {
             fetchData()
+            fetchNextDay()
+            console.log(nextDayData);
         }
     }
     
-
-    const languages = [
-        {
-          name: 'English',
-          code: 'en',
-          dir: 'ltr',
-          font: '',
-        },
-        {
-          name: 'پښتو',
-          code: 'ps',
-          dir: 'rtl',
-          font: "Noto Naskh Arabic', serif",
-          width: "300"
-        },
-        {
-          name: 'دری',
-          code: 'dr',
-          dir: 'rtl',
-          font: "Noto Naskh Arabic', serif",
-          width: "300"
-        }
-      ]
   const currentLanguageCode = cookies.get('i18next') || 'en' 
   const currentLanguage = languages.find(l => l.code === currentLanguageCode) 
   
@@ -135,7 +161,7 @@ const AppProvider = ({children}) =>  {
 
 
     return (
-    <AppContext.Provider value={{languageOn, viewLanguage, theme, changeTheme, menu, toggleMenu, handleHomeSubmit, homeLocation, setHomeLocation, homeMail, setHomeMail, homeLocationError, homeMailError, handleWeatherForm, cityValue, setCityValue, weatherData, showError, loading, setLanguageOn, languages, emptyInput}}>
+    <AppContext.Provider value={{languageOn, viewLanguage, theme, changeTheme, menu, toggleMenu, handleHomeSubmit, homeLocation, setHomeLocation, homeMail, setHomeMail, homeLocationError, homeMailError, handleWeatherForm, cityValue, setCityValue, weatherData, showError, loading, setLanguageOn, languages, emptyInput, nextDayData, getDayName}}>
         {children}
     </AppContext.Provider>
     )

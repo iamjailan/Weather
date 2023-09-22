@@ -3,7 +3,7 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from 'i18next-browser-languagedetector'
 import HttpApi from 'i18next-http-backend'
 
-const languages = ["en", "ps", "dr"];
+const languages = ["en", "ps", "fa"];
 
 
 i18n

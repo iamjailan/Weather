@@ -2,9 +2,12 @@ import React, { useContext } from 'react'
 import "./weather.css"
 import { AppContext } from '../context/context'
 import { useTranslation } from 'react-i18next'
+import { TiWeatherWindy } from 'react-icons/ti'
+import { IoUmbrellaOutline } from 'react-icons/io5'
+import { WiHumidity } from "react-icons/wi"
 
 export default function Weather() {
-  const { theme, handleWeatherForm, cityValue, setCityValue, weatherData, loading, showError, emptyInput } = useContext(AppContext)
+  const { theme, handleWeatherForm, cityValue, setCityValue, weatherData, loading, showError, emptyInput, nextDayData, getDayName } = useContext(AppContext)
   const { t } = useTranslation()
   if(loading) {
     return <h1 className={theme ? 'loading dark': 'loading'}>{t("loading")}</h1>
@@ -29,39 +32,47 @@ export default function Weather() {
         </div>) : (weatherData &&
         
         (<div className='weather-main'>
-          <h4 className='weather-title'>{t("right_now")} <span className='city-name'>{weatherData.name}</span>, {weatherData.weather[0].description}</h4>
           <div className='weather-details'>
+          <h4 className='weather-title'>{t("right_now")} <span className='city-name'> {weatherData.name}</span>, {weatherData.weather[0].description}</h4>
+          <section>
             <img className='weather-image' src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`} />
             <div className='weather-degree'>
               <h1>{convertKelvinToCelsius(weatherData.main.temp)}°C</h1>
               <div className='h-l-degree'>
-                <p className='deg'>{convertKelvinToCelsius(weatherData.main.temp)}°C /</p>
+                <p className='deg'>{convertKelvinToCelsius(weatherData.main.temp_min)}°C /</p>
                 <p className='deg'>{convertKelvinToCelsius(weatherData.main.temp_max)}°C</p>
               </div>
             </div>
             <div className='weather-rain'>
               <div className='mph'>
-                <p>&larr;</p>
+                <p><TiWeatherWindy /></p>
                 <p>{weatherData.wind.speed}<span>mph</span></p>
               </div>
               <div className='rain'>
-                <p >&larr;</p>
+                <p ><IoUmbrellaOutline /></p>
                 <p >{weatherData.main.humidity}<span>%</span></p>
               </div>
               <div className='module'>
-                <p>&larr;</p>
-                <p>94<span>%</span></p>
+                <p>{weatherData.weather[0].main}</p>
               </div>
             </div>
+            </section>
           </div>
           <main className='next-day-weather'>
-            <div className='day-details'>
-              <img className='day-image' src='./image.png' />
-              <div className='day-h-l'>
-                <p>29 / 79</p>
-              </div>
-              <p className='day'>Day</p>
-            </div>
+            {
+              nextDayData.map(day => {
+                return (
+                    <div key={day.dt} className='day-details'>
+                        <img className='day-image' src={`http://openweathermap.org/img/wn/${day.weather[0].icon}.png`} />
+                        <div className='day-h-l'>
+                          <p>{convertKelvinToCelsius(day.main.temp_min)}°C / {convertKelvinToCelsius(day.main.temp_max)}°C</p>
+                        </div>
+                        <p className='day'>{getDayName(day.dt_txt)}</p>
+                    </div>
+                )
+              })
+            }
+              
           </main>
         </div>
         )

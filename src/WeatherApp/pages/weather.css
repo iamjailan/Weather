@@ -55,13 +55,23 @@
     font-size: 2rem;
 }
 .weather-main {
-    padding: 20px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    width: 100%;
 }
 .weather-details {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+}
+.weather-details section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
 }
 .weather-degree {
     display: flex;
@@ -83,8 +93,11 @@
     justify-content: center;
 }
 .weather-rain div {
-    padding: 10px 0px;
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 30px;
+    margin: 10px 0px;
 }
 .weather-rain div p {
     color: rgba(0, 0, 0, 0.5);
@@ -97,7 +110,7 @@
 }
 .city-name {
     font-weight: 600;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: #000;
 }
 .next-day-weather {
@@ -121,12 +134,13 @@
     color: rgba(0, 0, 0, 0.6);
 }
 .day-h-l p {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 600;
 }
 .day {
     color: rgba(0, 0, 0, 0.6);
     font-weight: 600;
+    font-size: 15px;
 }
 .dark.weather {
     background-color: #0d0d13;
@@ -160,6 +174,20 @@
 .empty-size {
     height: 47.2vh;
 }
+@media screen and (max-width: 1024px) {
+    .weather-title {
+        font-size: 1.5rem;
+    }
+    .day-h-l p {
+        font-size: 10px;
+    }
+    .weather-title span {
+        font-size: 1.7rem;
+    }
+    .day {
+        font-size: 10px;
+    }
+}
 @media screen and (max-width: 768px) {
     .weather-title {
         font-size: 1.5rem;
@@ -167,17 +195,25 @@
     .city-name {
         font-size: 1.7rem;
     }
-    .next-day-weather {
-        grid-template-columns: auto auto;
-    }
     .loading-error h1 {
         font-size: 1rem;
+    }
+    .weather-main {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .day-h-l p {
+        font-size: 12px;
+    }
+    .next-day-weather {
+        grid-template-columns: auto auto;
     }
 }
 
 @media screen and (max-width: 500px) {
     .weather-title {
-        font-size: 1.2rem;
+        font-size: .9rem;
     }
     .city-name {
         font-size: 1.4rem;
@@ -187,5 +223,11 @@
     }
     .weather-degree h1 {
         font-size: 2rem;
+    }
+    .day-h-l p {
+        font-size: 12px;
+    }
+    .weather-title span {
+        font-size: 1.4rem;
     }
 }
