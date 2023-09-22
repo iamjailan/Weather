@@ -151,8 +151,8 @@
     color: #c5e3fa;
 }
 .loading-error {
-    height: 51.6vh;
     align-items: center;
+    justify-content: center;
     display: flex;
     color: red;
     text-transform: capitalize;

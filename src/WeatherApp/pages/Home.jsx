@@ -1,12 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import "./pages.css"
 import { AppContext } from '../context/context'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+
 export default function Home() {
     const { handleHomeSubmit, homeMail, setHomeMail, homeLocation, setHomeLocation, homeLocationError, homeMailError, theme } = useContext(AppContext)
     const { t } = useTranslation()
+    document.title = t("title")
   return (
     <main className={theme ? 'home dark' : 'home'}>
         <div className='home-text'>
