@@ -69,7 +69,7 @@ const AppProvider = ({children}) =>  {
 
     const getDayName = (dateString) => {
         const date = new Date(dateString);
-        const daysOfWeek = languages.code === "en" ?  ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] : ['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'] 
+        const daysOfWeek = currentLanguage.code === "en" ?  ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] : ['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'] 
         return daysOfWeek[date.getDay()]
     }
 

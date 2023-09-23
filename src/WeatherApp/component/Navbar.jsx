@@ -72,8 +72,8 @@ export default function Navbar() {
                     </aside>
                     <div className='navbar-pages'>
                       <ul>
-                      <li><NavLink className={({isActive}) => isActive ? 'active btn' : 'active'} to='/'>{t("home")}</NavLink></li>
-                      <li><NavLink className={({isActive}) => isActive ? 'active btn' : 'active'} to='/weather'>{t("weather")}</NavLink></li>
+                        <li><NavLink className={({isActive}) => isActive ? 'active btn' : 'active'} to='/'>{t("home")}</NavLink></li>
+                        <li><NavLink className={({isActive}) => isActive ? 'active btn' : 'active'} to='/weather'>{t("weather")}</NavLink></li>
                       </ul>
                     </div>
                 </main>

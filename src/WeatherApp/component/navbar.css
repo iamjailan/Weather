@@ -117,6 +117,9 @@ li:hover {
     .pc-nav  {
         display: none;
     }
+    .navbar-title {
+        font-size: 1.2rem;
+    }
     .mobile-nav {
         display: flex;
         flex-direction: column;
@@ -136,8 +139,9 @@ li:hover {
         align-items: center;
     }
     .main-mobile {
-        display: grid;
+        display: flex;
         grid-template-columns: auto auto auto;
+        justify-content: space-between;
         padding: 20px;
         transition: all .5s;
     }
@@ -146,11 +150,6 @@ li:hover {
     }
     .mobile-list {
         display: flex;
-        width: 100%;
-    }
-    .main-mobile ul {
-        display: flex;
-        align-items: center;
     }
     .main-mobile ul button {
         background-color: transparent;
@@ -160,12 +159,29 @@ li:hover {
     .language-part {
         display: flex;
         align-items: center;
+        justify-content: space-between;
+    }
+    .empty-size {
+        height: 61vh;
     }
 }
-@media screen and (max-width: 350px){
-    .main-mobile {
-        grid-template-columns: auto;
-        justify-content: center;
-        align-items: center;
+@media screen and (max-width: 400px){
+    .main-mobile .navbar-pages ul li a{
+        font-size: .7rem;
+    }
+    .lang-btn.icon {
+        font-size: 1.5rem;
+    }
+    .mobile-list ul button {
+        font-size: .6rem;
+    }
+    .weather-form input {
+        width: 180px;
+        padding: 5px;
+        font-size: .6rem;
+    }
+    .weather-form button {
+        width: 120px;
+        padding: 2px;
     }
 }
