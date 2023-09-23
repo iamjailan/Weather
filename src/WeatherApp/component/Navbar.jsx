@@ -8,12 +8,14 @@ import { useTranslation } from "react-i18next"
 import i18n from "../i18next"
 
 export default function Navbar() {
-  const { languageOn, viewLanguage, changeTheme, theme, menu, toggleMenu, languages, setLanguageOn} = useContext(AppContext)
+  const { languageOn, viewLanguage, changeTheme, theme, menu, toggleMenu, languages, setLanguageOn, setLoading} = useContext(AppContext)
   const { t, i18n } = useTranslation()
 
   const handleLanguage = (lang) => {
+    setLoading(true)
     i18n.changeLanguage(lang)
     setLanguageOn(false)
+    setLoading(false)
   }
 
   return (

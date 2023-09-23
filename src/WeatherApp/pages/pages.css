@@ -96,12 +96,23 @@
 .dark .home-button {
     color: #c5e3fa;
 }
-@media screen and (max-width: 900px){
+@media screen and (max-width: 1440px) {
+    .home-text h1 {
+        font-size: 2.2rem;
+    }
+    .home-button {
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width: 1024px){
     .home-text h1 {
         font-size: 2rem;
     }
     .home-form h3, h4 {
         font-size: 1.2rem;
+    }
+    .home-button {
+        font-size: 1rem;
     }
 }
 @media screen and (max-width: 768px){
@@ -125,5 +136,33 @@
     }
     .form input {
         width: 220px;
+    }
+}
+@media screen and (max-width: 425px) {
+    .home-text h1 {
+        font-size: .9rem;
+        line-height: 30px;
+    }
+    .home-text .home-button {
+        font-size: .7rem;
+    }
+    .home-form h4 ,.home-form h3 {
+        font-size: .6rem;
+        text-align: center;
+    }
+    .form label {
+        font-size: .6rem;
+    }
+    .form input {
+        font-size: .6rem;
+        width: 200px;
+        padding: 5px;
+    }
+    .form button {
+        padding: 5px;
+        font-size: .6rem;
+    }
+    .home-form {
+        margin-top: -150px;
     }
 }

@@ -161,7 +161,7 @@ const AppProvider = ({children}) =>  {
 
 
     return (
-    <AppContext.Provider value={{languageOn, viewLanguage, theme, changeTheme, menu, toggleMenu, handleHomeSubmit, homeLocation, setHomeLocation, homeMail, setHomeMail, homeLocationError, homeMailError, handleWeatherForm, cityValue, setCityValue, weatherData, showError, loading, setLanguageOn, languages, emptyInput, nextDayData, getDayName}}>
+    <AppContext.Provider value={{languageOn, viewLanguage, theme, changeTheme, menu, toggleMenu, handleHomeSubmit, homeLocation, setHomeLocation, homeMail, setHomeMail, homeLocationError, homeMailError, handleWeatherForm, cityValue, setCityValue, weatherData, showError, setLoading, loading, setLanguageOn, languages, emptyInput, nextDayData, getDayName}}>
         {children}
     </AppContext.Provider>
     )
