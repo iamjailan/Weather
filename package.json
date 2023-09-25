@@ -1,6 +1,6 @@
 {
   "name": "weather",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "This is a React app that displays weather information fetched from the OpenWeather API. It includes the next four days weather forecast and supports multiple languages using i18next for internationalization. The app also utilizes React Router DOM for routing and Context API for state management.",
   "main": "vite.config.js",
   "dependencies": {
