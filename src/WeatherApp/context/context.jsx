@@ -8,7 +8,7 @@ const AppContext = createContext()
 
 const AppProvider = ({children}) =>  {
     const [languageOn, setLanguageOn] = React.useState(false)
-    const [theme, setTheme] = React.useState(false)
+    const [theme, setTheme] = React.useState(window.matchMedia("(prefers-color-scheme)"))
     const [menu, setMenu] = React.useState(false)
     const [homeLocationError, setHomeLocationError] = React.useState(false)
     const [homeLocation, setHomeLocation] = React.useState('')
